@@ -36,13 +36,12 @@ source .venv/bin/activate
 uvicorn app.main:app --reload --port 8000
 ```
 
-### 4. Interactive API Documentation
+### 4. Live Cloud Production (Render)
 
-Visit [http://localhost:8000/docs](http://localhost:8000/docs) in your browser.
-
-- `GET /health`: Check server and scheduler status.
-- `POST /test-reminder`: Send a test reminder to your Telegram immediately.
-- `POST /webhook/telegram`: Endpoint for incoming Telegram webhook updates.
+- **Live URL**: [https://agentic-career-copilot.onrender.com](https://agentic-career-copilot.onrender.com)
+- **Health Check**: [https://agentic-career-copilot.onrender.com/health](https://agentic-career-copilot.onrender.com/health)
+- **Interactive Swagger Docs**: [https://agentic-career-copilot.onrender.com/docs](https://agentic-career-copilot.onrender.com/docs)
+- **Active Webhook**: `https://agentic-career-copilot.onrender.com/webhook/telegram`
 
 ### 5. Running Tests
 
