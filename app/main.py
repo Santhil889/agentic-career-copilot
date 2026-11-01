@@ -58,7 +58,7 @@ async def health_check():
     """
     Returns the server health and next scheduled reminder time.
     """
-    job = scheduler.get_job("daily_naukri_reminder")
+    job = scheduler.get_job("naukri_reminder_job")
     next_run = "Pending scheduler start"
     if job and hasattr(job, "next_run_time") and job.next_run_time:
         next_run = str(job.next_run_time)
@@ -67,9 +67,12 @@ async def health_check():
         "status": "healthy",
         "scheduler_running": scheduler.running,
         "is_configured": settings.is_configured,
-        "daily_reminder": {
-            "hour": settings.REMINDER_HOUR,
+        "reminder_schedule": {
+            "cron_hours": settings.cron_hour_expression,
             "minute": settings.REMINDER_MINUTE,
+            "interval_hours": settings.REMINDER_INTERVAL_HOURS,
+            "start_hour": settings.REMINDER_START_HOUR,
+            "end_hour": settings.REMINDER_END_HOUR,
             "timezone": settings.TIMEZONE,
             "next_run_time": next_run,
         },

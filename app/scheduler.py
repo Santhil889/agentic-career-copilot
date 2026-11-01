@@ -37,7 +37,7 @@ def setup_scheduler() -> AsyncIOScheduler:
     scheduler = AsyncIOScheduler(timezone=settings.TIMEZONE)
 
     trigger = CronTrigger(
-        hour=settings.REMINDER_HOUR,
+        hour=settings.cron_hour_expression,
         minute=settings.REMINDER_MINUTE,
         timezone=settings.TIMEZONE,
     )
@@ -45,14 +45,14 @@ def setup_scheduler() -> AsyncIOScheduler:
     scheduler.add_job(
         send_daily_naukri_reminder,
         trigger=trigger,
-        id="daily_naukri_reminder",
-        name="Daily Naukri Profile Reminder",
+        id="naukri_reminder_job",
+        name="Naukri Profile Reminder Job",
         replace_existing=True,
     )
 
     logger.info(
-        "Configured daily reminder job at %02d:%02d (%s)",
-        settings.REMINDER_HOUR,
+        "Configured reminder job with hours='%s', minute=%02d (%s)",
+        settings.cron_hour_expression,
         settings.REMINDER_MINUTE,
         settings.TIMEZONE,
     )
